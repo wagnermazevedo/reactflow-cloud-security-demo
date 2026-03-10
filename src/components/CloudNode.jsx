@@ -3,13 +3,7 @@ import Icon from './Icon';
 import { getIcon } from '../icons/IconRegistry';
 
 export default function CloudNode({ data }) {
-  const {
-    label,
-    subtitle,
-    iconKey,
-    color = '#2563EB',
-  } = data;
-
+  const { label, subtitle, iconKey, color = '#2563EB' } = data;
   const icon = iconKey ? getIcon(iconKey) : null;
 
   return (
@@ -25,7 +19,6 @@ export default function CloudNode({ data }) {
       }}
     >
       <Handle type="target" position={Position.Left} />
-
       <div style={{ height: 7, background: color }} />
 
       <div

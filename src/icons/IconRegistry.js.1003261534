@@ -1,0 +1,44 @@
+import * as simpleIcons from "simple-icons";
+
+const simple = (icon) => ({
+  type: "simple",
+  value: icon
+});
+
+export const IconRegistry = {
+  providers: {
+    aws: simple(simpleIcons.siAmazonaws),
+  },
+
+  securityPlatforms: {
+    slack: simple(simpleIcons.siSlack),
+  },
+
+  awsServices: {
+    securityHub: {
+      type: "fallback",
+      shortLabel: "SH",
+      bg: "#E8F1FE",
+      fg: "#1D4ED8",
+    },
+
+    lambda: {
+      type: "fallback",
+      shortLabel: "λ",
+      bg: "#FFF7ED",
+      fg: "#C2410C",
+    },
+  }
+};
+
+export const getIcon = (path) => {
+  const parts = path.split(".");
+  let current = IconRegistry;
+
+  for (const part of parts) {
+    current = current?.[part];
+    if (!current) return null;
+  }
+
+  return current;
+};

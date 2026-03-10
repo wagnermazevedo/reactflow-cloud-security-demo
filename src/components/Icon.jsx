@@ -1,22 +1,9 @@
-export default function Icon({ icon, label, size = 34 }) {
-  if (icon?.type === 'simple' && icon.value) {
-    return (
-      <svg
-        role="img"
-        viewBox="0 0 24 24"
-        width={size}
-        height={size}
-        fill={`#${icon.value.hex}`}
-        dangerouslySetInnerHTML={{ __html: icon.value.svg }}
-        style={{ flexShrink: 0 }}
-      />
-    );
-  }
+export default function Icon({ icon, label, size = 32 }) {
 
-  const fallbackText =
+  const fallback =
     icon?.shortLabel ||
     label?.slice(0, 2)?.toUpperCase() ||
-    'NA';
+    "NA"
 
   return (
     <div
@@ -24,21 +11,17 @@ export default function Icon({ icon, label, size = 34 }) {
         width: size,
         height: size,
         minWidth: size,
-        borderRadius: 10,
-        background: icon?.bg || '#E5E7EB',
-        color: icon?.fg || '#111827',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
+        borderRadius: 8,
+        background: icon?.bg || "#E5E7EB",
+        color: icon?.fg || "#111827",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
         fontSize: 11,
-        fontWeight: 700,
-        fontFamily: 'Arial, sans-serif',
-        border: '1px solid rgba(0,0,0,0.08)',
-        flexShrink: 0,
+        fontWeight: 700
       }}
-      title={label}
     >
-      {fallbackText}
+      {fallback}
     </div>
-  );
+  )
 }
