@@ -1,0 +1,44 @@
+export default function Icon({ icon, label, size = 34 }) {
+  if (icon?.type === 'simple' && icon.value) {
+    return (
+      <svg
+        role="img"
+        viewBox="0 0 24 24"
+        width={size}
+        height={size}
+        fill={`#${icon.value.hex}`}
+        dangerouslySetInnerHTML={{ __html: icon.value.svg }}
+        style={{ flexShrink: 0 }}
+      />
+    );
+  }
+
+  const fallbackText =
+    icon?.shortLabel ||
+    label?.slice(0, 2)?.toUpperCase() ||
+    'NA';
+
+  return (
+    <div
+      style={{
+        width: size,
+        height: size,
+        minWidth: size,
+        borderRadius: 10,
+        background: icon?.bg || '#E5E7EB',
+        color: icon?.fg || '#111827',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        fontSize: 11,
+        fontWeight: 700,
+        fontFamily: 'Arial, sans-serif',
+        border: '1px solid rgba(0,0,0,0.08)',
+        flexShrink: 0,
+      }}
+      title={label}
+    >
+      {fallbackText}
+    </div>
+  );
+}
